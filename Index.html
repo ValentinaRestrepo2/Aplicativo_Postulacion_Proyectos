@@ -27,7 +27,7 @@
     }
 
     .modo-login {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://marketersbyadlatina.com/uploads/img/-7655-cia-choco944jpg.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://lh3.googleusercontent.com/pw/AP1GczNkvnt2EH1t0ooqZS9oBItnrs3ij8RS3GQN_S2WvZAIBM0w6T8tEvljUB1JZNHmwGFXhccWBV60hI6pQ63O1XqQscpRfzJzBA8yZMBIchPwaHtFm3DBQUHNmA2NQ53xW7NuThO9s7CmiFzvDtQDQJ6mmA=w1920-h923-s-no-gm?authuser=0');
       background-size: cover;
       background-position: center;
       min-height: 100vh;
@@ -82,16 +82,13 @@
       border: none;
       font-weight: 500;
       transition: all 0.3s ease;
-      /* Transición suave */
     }
 
     .btn-cnch-verde:hover {
       background-color: var(--cnch-verde-hover);
       color: white;
       transform: translateY(-2px);
-      /* Efecto de elevación */
       box-shadow: 0 5px 15px rgba(77, 141, 138, 0.4);
-      /* Sombra difusa */
     }
 
     .btn-cnch-azul {
@@ -133,7 +130,10 @@
       animation: fadeInUp 0.5s ease;
     }
 
-    /* Ajuste para que Select2 se adapte al ancho de Bootstrap */
+    .campo {
+      text-transform: none;
+    }
+
     .select2-container--default .select2-selection--single {
       border: 1px solid #ced4da;
       height: 38px;
@@ -163,7 +163,9 @@
   <div id="vistaAcceso" class="seccion activo">
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
       <div class="card p-5 text-center shadow-lg" style="max-width: 400px; border-radius: 20px;">
-        <img src="https://lh3.googleusercontent.com/pw/AP1GczPHohAB1rG8UUI7V7IbUfLIVbNB2RzXQacFiGGYNrDaKYAJMovzAXz_hoaN4PWzCPAOCP8lbwWH1jzgmXVCcBDDEtXA1i9O6Zfnq3OweFe6hVqpZOBGmjfx3l71cY_Qwnm7L8EYTEglJDSA-DzxjQUK=w635-h305-s-no-gm?authuser=0" class="text-cnch-azul mb-4 fw-bold">
+        <img
+          src="https://lh3.googleusercontent.com/pw/AP1GczPHohAB1rG8UUI7V7IbUfLIVbNB2RzXQacFiGGYNrDaKYAJMovzAXz_hoaN4PWzCPAOCP8lbwWH1jzgmXVCcBDDEtXA1i9O6Zfnq3OweFe6hVqpZOBGmjfx3l71cY_Qwnm7L8EYTEglJDSA-DzxjQUK=w635-h305-s-no-gm?authuser=0"
+          class="text-cnch-azul mb-4 fw-bold">
         <input type="text" id="cedulaInput" class="form-control mb-3 text-center" placeholder="Escriba aquí su cédula">
         <button onclick="iniciarSesion()" id="btnIngresar" class="btn btn-cnch-verde w-100">Ingresar</button>
       </div>
@@ -174,7 +176,9 @@
     <header class="banner-hero">
       <div class="container d-flex justify-content-between align-items-center">
         <div class="logo-espacio">
-          <img src="https://lh3.googleusercontent.com/pw/AP1GczPHohAB1rG8UUI7V7IbUfLIVbNB2RzXQacFiGGYNrDaKYAJMovzAXz_hoaN4PWzCPAOCP8lbwWH1jzgmXVCcBDDEtXA1i9O6Zfnq3OweFe6hVqpZOBGmjfx3l71cY_Qwnm7L8EYTEglJDSA-DzxjQUK=w635-h305-s-no-gm?authuser=0" alt="Logo">
+          <img
+            src="https://lh3.googleusercontent.com/pw/AP1GczPHohAB1rG8UUI7V7IbUfLIVbNB2RzXQacFiGGYNrDaKYAJMovzAXz_hoaN4PWzCPAOCP8lbwWH1jzgmXVCcBDDEtXA1i9O6Zfnq3OweFe6hVqpZOBGmjfx3l71cY_Qwnm7L8EYTEglJDSA-DzxjQUK=w635-h305-s-no-gm?authuser=0"
+            alt="Logo">
         </div>
         <div class="info-usuario text-end">
           <h2 id="txtNombre">Cargando...</h2>
@@ -213,34 +217,49 @@
           <form id="formProyecto" onsubmit="event.preventDefault(); procesarEnvio();">
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label">Escriba su celular <strong style="color:red">*</strong></label><input type="text" id="celular" class="form-control" required>
+                <label class="form-label">Escriba su celular <strong style="color:red">*</strong></label><input
+                  type="text" id="celular" class="form-control" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Título del proyecto (Máximo 20 caracteres) <strong style="color:red">*</strong></label><input type="text" id="titulo" class="form-control" maxlength="20" required>
+                <label class="form-label">Título del proyecto (Máximo 40 caracteres) <strong
+                    style="color:red">*</strong></label><input type="text" id="titulo" class="form-control campo"
+                  maxlength="40" oninput="corregirMayusculas(this)" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Categoría <strong style="color:red">*</strong></label><select id="cat" class="form-select" onchange="cargarSubcats()" required></select>
+                <label class="form-label">Categoría <strong style="color:red">*</strong></label><select id="cat"
+                  class="form-select" onchange="cargarSubcats()" required></select>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Subcategoría <strong style="color:red">*</strong></label><select id="subcat" class="form-select" required disabled></select>
+                <label class="form-label">Subcategoría <strong style="color:red">*</strong></label><select id="subcat"
+                  class="form-select" required disabled></select>
               </div>
               <div class="col-12">
-                <label class="form-label">Descripción breve del proyecto (Máximo 1000 caracteres)<strong style="color:red">*</strong></label><textarea id="desc" class="form-control" rows="3" maxlength="1000" required></textarea>
+                <label class="form-label">Descripción breve del proyecto (Máximo 1000 caracteres)<strong
+                    style="color:red">*</strong></label><textarea id="desc" class="form-control campo" rows="3"
+                  maxlength="1000" oninput="corregirMayusculas(this)" required></textarea>
               </div>
               <div class="col-md-4">
-                <label class="form-label">Fecha de implementación del proyecto <strong style="color:red">*</strong></label><input type="month" id="fecha" class="form-control" required>
+                <label class="form-label">Fecha de implementación del proyecto <strong
+                    style="color:red">*</strong></label><input type="month" id="fecha" class="form-control" required>
               </div>
               <div class="col-md-4">
-                <label class="form-label">Beneficio tangible <strong style="color:red">*</strong></label><input type="number" id="ben" class="form-control" required>
+                <label class="form-label">Generación de valor (Económico) <strong
+                    style="color:red">*</strong></label><input type="number" id="ben" class="form-control" required>
               </div>
               <div class="col-md-4">
-                <label class="form-label">Moneda del beneficio tangible <strong style="color:red">*</strong></label>
+                <label class="form-label">Moneda del valor económico <strong style="color:red">*</strong></label>
                 <select id="mon" class="form-select" required>
-                <option value="Dólares">Dólares (USD)</option>
-                <option value="Pesos">Pesos Colombianos(COP)</option>
-                <option value="Soles">Soles (PEN)</option>
-                <option value="Colones">Colones (CRC)</option>
-              </select>
+                  <option value="Dólares">Dólares (USD)</option>
+                  <option value="Pesos Colombianos">Pesos Colombianos(COP)</option>
+                  <option value="Soles">Soles (PEN)</option>
+                  <option value="Colones">Colones (CRC)</option>
+                </select>
+              </div>
+              <div class="col-12 mt-3">
+                <label class="form-label">Generación de valor (No económico alineado a los retos del negocio - Máximo
+                  300 caracteres):<strong style="color:red">*</strong> </label><textarea id="noeco"
+                  class="form-control campo" rows="2" maxlength="300" oninput="corregirMayusculas(this)"
+                  required></textarea>
               </div>
               <div class="col-12 mt-4">
                 <h4 class="text-cnch-verde pb-2 font-bold">Integrantes <strong style="color:red">*</strong></h4>
@@ -249,7 +268,10 @@
                 <div id="gridIntegrantes" class="row g-2"></div>
               </div>
               <div class="col-12 mt-3">
-                <label class="form-label">Observaciones: </label><textarea id="obs" class="form-control" rows="2" placeholder="Este campo aplica para comentarios adicionales que tengas o si deseas postular un participante de México"></textarea>
+                <label class="form-label">Observaciones (Máximo 300 caracteres): </label><textarea id="obs"
+                  class="form-control campo" rows="2"
+                  placeholder="Este campo aplica para comentarios adicionales que tengas o si deseas postular un participante de México"
+                  maxlength="300" oninput="corregirMayusculas(this)"></textarea>
               </div>
               <div class="col-12 text-end mt-4">
                 <button type="button" onclick="volverAListado()" class="btn btn-cnch-cerrar px-5">Cancelar</button>
@@ -265,64 +287,61 @@
   <script>
     let SESION = null;
 
-  function mostrarCargando(msj) {
-    Swal.fire({ title: msj, allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
-  }
-
-  function iniciarSesion() {
-    const ced = document.getElementById('cedulaInput').value.trim();
-    if(!ced) return Swal.fire('Atención', 'Recuerde que debe ingresar su cédula/documento de identidad', 'warning');
-    mostrarCargando('Cargando...');
-    
-    google.script.run
-      .withSuccessHandler(res => {
-        if (!res || !res.usuario) {
-          Swal.fire('Error', 'No se recibieron datos del usuario.', 'error');
-          return;
-        }
-        Swal.close();
-        SESION = res;
-        configurarApp();
-      })
-      .withFailureHandler(err => {
-        Swal.fire('Acceso Denegado', err.message, 'error');
-      })
-      .validarAcceso(ced);
-  }
-
-  function configurarApp() {
-    if (!SESION) return;
-    document.getElementById('cuerpoPagina').className = 'modo-app';
-    document.getElementById('vistaAcceso').classList.remove('activo');
-    document.getElementById('vistaApp').classList.add('activo');
-    
-    const u = SESION.usuario;
-    document.getElementById('txtNombre').innerText = '¡Hola, ' + u.nombre.split(' ')[0] + '!';
-    document.getElementById('txtCargo').innerText = u.cargo;
-    document.getElementById('txtGerencia').innerText = u.gerencia;
-    
-    dibujarTabla(SESION.proyectos || []);
-    prepararSelects();
-  }
-
-  function prepararSelects() {
-    // 1. Cargar Categorías
-    const c = document.getElementById('cat');
-    c.innerHTML = '<option value="">Seleccione Categoría...</option>';
-    if (SESION.categorias) {
-        Object.keys(SESION.categorias).forEach(k => {
-            c.innerHTML += `<option value="${k}">${k}</option>`;
-        });
+    function mostrarCargando(msj) {
+      Swal.fire({ title: msj, allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
     }
 
-    // 2. Generar Integrantes
-    const grid = document.getElementById('gridIntegrantes');
-    grid.innerHTML = '';
-    
-    // Crear opciones una sola vez
-    const opts = (SESION.integrantes || []).map(i => `<option value="${i}">${i}</option>`).join('');
-    
-    for (let i = 1; i <= 10; i++) {
+    function iniciarSesion() {
+      const ced = document.getElementById('cedulaInput').value.trim();
+      if (!ced) return Swal.fire('Atención', 'Recuerde que debe ingresar su cédula/documento de identidad', 'warning');
+      mostrarCargando('Cargando...');
+
+      google.script.run
+        .withSuccessHandler(res => {
+          if (!res || !res.usuario) {
+            Swal.fire('Error', 'No se recibieron datos del usuario.', 'error');
+            return;
+          }
+          Swal.close();
+          SESION = res;
+          configurarApp();
+        })
+        .withFailureHandler(err => {
+          Swal.fire('Acceso Denegado', err.message, 'error');
+        })
+        .validarAcceso(ced);
+    }
+
+    function configurarApp() {
+      if (!SESION) return;
+      document.getElementById('cuerpoPagina').className = 'modo-app';
+      document.getElementById('vistaAcceso').classList.remove('activo');
+      document.getElementById('vistaApp').classList.add('activo');
+
+      const u = SESION.usuario;
+      document.getElementById('txtNombre').innerText = '¡Hola, ' + u.nombre.split(' ')[0] + '!';
+      document.getElementById('txtCargo').innerText = u.cargo;
+      document.getElementById('txtGerencia').innerText = u.gerencia;
+
+      dibujarTabla(SESION.proyectos || []);
+      prepararSelects();
+    }
+
+    function prepararSelects() {
+      const c = document.getElementById('cat');
+      c.innerHTML = '<option value="">Seleccione Categoría...</option>';
+      if (SESION.categorias) {
+        Object.keys(SESION.categorias).forEach(k => {
+          c.innerHTML += `<option value="${k}">${k}</option>`;
+        });
+      }
+
+      const grid = document.getElementById('gridIntegrantes');
+      grid.innerHTML = '';
+
+      const opts = (SESION.integrantes || []).map(i => `<option value="${i}">${i}</option>`).join('');
+
+      for (let i = 1; i <= 10; i++) {
         grid.innerHTML += `
             <div class="col-md-6 mb-3">
                 <label class="small fw-bold">Participante ${i}*</label>
@@ -331,40 +350,38 @@
                     ${opts}
                 </select>
             </div>`;
-    }
+      }
 
-    // 3. ACTIVAR BUSCADOR (Select2)
-    // Se aplica a todos los selects con la clase 'buscador-select'
-    $('.buscador-select').select2({
+      $('.buscador-select').select2({
         placeholder: "Escriba para buscar...",
         allowClear: true,
         language: {
-            noResults: function() { return "No se encontraron coincidencias"; }
+          noResults: function () { return "No se encontraron coincidencias"; }
         }
-    });
-}
+      });
+    }
 
-  function cargarSubcats() {
-    const cat = document.getElementById('cat').value;
-    const sub = document.getElementById('subcat');
-    sub.innerHTML = '<option value="">Seleccione...</option>';
-    if(cat && SESION.categorias[cat]) {
-      SESION.categorias[cat].forEach(s => sub.innerHTML += `<option value="${s}">${s}</option>`);
-      sub.disabled = false;
-    } else { sub.disabled = true; }
-  }
+    function cargarSubcats() {
+      const cat = document.getElementById('cat').value;
+      const sub = document.getElementById('subcat');
+      sub.innerHTML = '<option value="">Seleccione...</option>';
+      if (cat && SESION.categorias[cat]) {
+        SESION.categorias[cat].forEach(s => sub.innerHTML += `<option value="${s}">${s}</option>`);
+        sub.disabled = false;
+      } else { sub.disabled = true; }
+    }
 
- function dibujarTabla(proyectos) {
+
+
+    function dibujarTabla(proyectos) {
       const body = document.getElementById('tablaProyectos');
-      
-      // SOLUCIÓN DEFINITIVA: Validar que 'proyectos' sea un arreglo
+
       if (!Array.isArray(proyectos)) {
         console.warn("Se recibió un valor nulo o inválido en dibujarTabla. Ajustando a arreglo vacío.");
         proyectos = [];
       }
 
       body.innerHTML = proyectos.map(p => {
-        // Validación adicional para la fecha
         const fechaObj = p.fecha ? new Date(p.fecha) : new Date();
         const fechaFormateada = isNaN(fechaObj) ? "Fecha inválida" : fechaObj.toLocaleDateString();
 
@@ -376,29 +393,36 @@
       }).join('') || '<tr><td colspan="3" class="text-center">Aún no se han postulado proyectos.</td></tr>';
     }
 
-  function mostrarFormulario() { document.getElementById('subVistaListado').style.display = 'none'; document.getElementById('subVistaFormulario').classList.add('activo'); }
-  function volverAListado() { document.getElementById('subVistaFormulario').classList.remove('activo'); document.getElementById('subVistaListado').style.display = 'block'; }
+    function mostrarFormulario() { document.getElementById('subVistaListado').style.display = 'none'; document.getElementById('subVistaFormulario').classList.add('activo'); }
+    function volverAListado() { document.getElementById('subVistaFormulario').classList.remove('activo'); document.getElementById('subVistaListado').style.display = 'block'; }
 
-  function procesarEnvio() {
-    mostrarCargando('Guardando...');
-    const payload = {
-      cedula: SESION.usuario.cedula, nombre: SESION.usuario.nombre, gerencia: SESION.usuario.gerencia,
-      celular: document.getElementById('celular').value, titulo: document.getElementById('titulo').value,
-      categoria: document.getElementById('cat').value, subcategoria: document.getElementById('subcat').value,
-      descripcion: document.getElementById('desc').value, fechaImpl: document.getElementById('fecha').value,
-      beneficio: document.getElementById('ben').value, moneda: document.getElementById('mon').value,
-      integrantes: Array.from({length:10}, (_, i) => document.getElementById(`integ_${i+1}`).value),
-      observaciones: document.getElementById('obs').value
-    };
-    google.script.run
-      .withSuccessHandler(actualizados => {
-        Swal.fire('¡Éxito!', 'Proyecto postulado.', 'success');
-        document.getElementById('formProyecto').reset();
-        dibujarTabla(actualizados);
-        volverAListado();
-      })
-      .guardarNuevoProyecto(payload);
-  }
+    function corregirMayusculas(elemento) {
+      let texto = elemento.value;
+      if (texto.length > 0) {
+        elemento.value = texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+      }
+    }
+    function procesarEnvio() {
+      mostrarCargando('Guardando...');
+      const payload = {
+        cedula: SESION.usuario.cedula, nombre: SESION.usuario.nombre, gerencia: SESION.usuario.gerencia,
+        celular: document.getElementById('celular').value, titulo: document.getElementById('titulo').value,
+        categoria: document.getElementById('cat').value, subcategoria: document.getElementById('subcat').value,
+        descripcion: document.getElementById('desc').value, fechaImpl: document.getElementById('fecha').value,
+        beneficio: document.getElementById('ben').value, moneda: document.getElementById('mon').value,
+        intangible: document.getElementById('noeco').value,
+        integrantes: Array.from({ length: 10 }, (_, i) => document.getElementById(`integ_${i + 1}`).value),
+        observaciones: document.getElementById('obs').value
+      };
+      google.script.run
+        .withSuccessHandler(actualizados => {
+          Swal.fire('¡Éxito!', 'Tu proyecto fue postulado correctamente.', 'success');
+          document.getElementById('formProyecto').reset();
+          dibujarTabla(actualizados);
+          volverAListado();
+        })
+        .guardarNuevoProyecto(payload);
+    }
   </script>
 </body>
 
